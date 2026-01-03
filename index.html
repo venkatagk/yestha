@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yestha Inc.</title>
+
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #14b8a6;
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --muted: #475569;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        header {
+            background: var(--primary);
+            color: #fff;
+            padding: 64px 20px;
+            text-align: center;
+        }
+
+            header img {
+                height: 42px;
+                margin-bottom: 16px;
+            }
+
+            header h1 {
+                font-size: 2.4rem;
+                margin: 0 0 12px;
+            }
+
+            header p {
+                max-width: 720px;
+                margin: auto;
+                opacity: 0.9;
+                font-size: 1.05rem;
+            }
+
+        section {
+            max-width: 1000px;
+            margin: auto;
+            padding: 56px 20px;
+        }
+
+        h2 {
+            margin-bottom: 24px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--accent);
+        }
+
+            .card h3 {
+                margin-top: 0;
+            }
+
+        footer {
+            background: #f1f5f9;
+            text-align: center;
+            padding: 28px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="/assets/logo/yestha-logo.svg" alt="Yestha Inc logo" />
+        <h1>Yestha Inc.</h1>
+        <p>
+            Building reliable, scalable, and modern web solutions —
+            from architecture to delivery.
+        </p>
+    </header>
+
+    <section>
+        <h2>Our Services</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Web Application Development</h3>
+                <p>Modern, secure, and high-performance web applications.</p>
+            </div>
+
+            <div class="card">
+                <h3>Technology Consulting</h3>
+                <p>Architecture, system design, and cloud modernization.</p>
+            </div>
+
+            <div class="card">
+                <h3>Maintenance & Support</h3>
+                <p>Reliable support and continuous improvements.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Contact</h2>
+        <p>
+            📧 Email: <strong>contact@yestha.com</strong><br />
+            🌍 Location: Remote / Global
+        </p>
+    </section>
+
+    <footer>
+        © <span id="year"></span> Yestha Inc. All rights reserved.
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

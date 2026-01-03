@@ -1,0 +1,10 @@
+<svg width="220" height="48" viewBox="0 0 220 48" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="48" height="48" rx="10" fill="#14b8a6"/>
+  <path d="M16 14h16v4H24v16h-4V18h-4z" fill="#0f172a"/>
+  <text x="60" y="32" font-size="28" font-family="Segoe UI, Arial, sans-serif" fill="#0f172a" font-weight="600">
+    Yestha
+  </text>
+  <text x="150" y="32" font-size="16" font-family="Segoe UI, Arial, sans-serif" fill="#475569">
+    Inc.
+  </text>
+</svg>
