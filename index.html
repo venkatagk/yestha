@@ -7,128 +7,442 @@
 
     <style>
         :root {
-            --primary: #0f172a;
-            --accent: #14b8a6;
-            --bg: #f8fafc;
-            --text: #0f172a;
-            --muted: #475569;
+            --bg: #0b0b0b;
+            --text: #fff;
+            --muted: #a1a1aa;
+            --accent: #7e15c6; /* purple accent */
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
             background: var(--bg);
             color: var(--text);
         }
 
-        header {
-            background: var(--primary);
-            color: #fff;
-            padding: 64px 20px;
-            text-align: center;
+        /* ---------- NAV ---------- */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 40px;
         }
 
-            header img {
-                height: 42px;
-                margin-bottom: 16px;
+            nav img {
+                height: 36px;
             }
 
-            header h1 {
-                font-size: 2.4rem;
-                margin: 0 0 12px;
+            nav ul {
+                display: flex;
+                gap: 28px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
             }
 
-            header p {
-                max-width: 720px;
-                margin: auto;
-                opacity: 0.9;
-                font-size: 1.05rem;
+            nav li {
+                color: #e5e7eb;
+                font-size: 0.95rem;
+                cursor: pointer;
             }
 
-        section {
-            max-width: 1000px;
-            margin: auto;
-            padding: 56px 20px;
-        }
+        /* ---------- HERO ---------- */
 
-        h2 {
-            margin-bottom: 24px;
-        }
-
-        .grid {
+        .hero {
+            padding: 56px 40px 52px; /* reduced top space */
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+            .hero h1 {
+                font-size: clamp(3rem, 6vw, 5.2rem);
+                line-height: 1.05;
+                margin: 0;
+                letter-spacing: -1px;
+            }
+
+            .hero .accent {
+                color: var(--accent);
+            }
+
+            .hero p {
+                margin-top: 24px;
+                font-size: 1.05rem;
+                color: var(--muted);
+                max-width: 520px;
+                line-height: 1.7;
+            }
+
+        .cta {
+            margin-top: 32px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+            .cta span {
+                display: inline-flex;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background: var(--accent);
+                align-items: center;
+                justify-content: center;
+            }
+
+        /* ---------- CARDS ---------- */
+
+        .cards {
+            padding: 80px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
         }
 
         .card {
-            background: #fff;
+            background: linear-gradient(180deg, #fff, #050505);
             padding: 28px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            border-top: 4px solid var(--accent);
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-            .card h3 {
-                margin-top: 0;
+            .card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 30px 60px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.06);
             }
 
-        footer {
-            background: #f1f5f9;
-            text-align: center;
+
+            .card small {
+                color: var(--accent);
+                text-transform: uppercase;
+                font-size: 0.75rem;
+                letter-spacing: 0.08em;
+            }
+
+            .card h3 {
+                margin: 14px 0 0;
+                font-size: 1.3rem;
+            }
+
+        /* ---------- MOBILE ---------- */
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 80px 24px;
+            }
+
+            nav {
+                padding: 18px 24px;
+            }
+
+                nav ul {
+                    display: none;
+                }
+        }
+
+        /* ---------- VISUAL CONTENT CARDS ---------- */
+
+        .visual-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            padding: 80px 40px;
+        }
+
+        .vcard {
+            position: relative;
+            height: 420px;
+            border-radius: 6px;
+            overflow: hidden;
             padding: 28px;
-            font-size: 0.9rem;
-            color: var(--muted);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+            .vcard::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient( 180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.75) );
+                z-index: 0;
+            }
+
+            .vcard * {
+                position: relative;
+                z-index: 1;
+            }
+
+            .vcard:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 40px 80px rgba(0,0,0,0.7);
+            }
+
+            /* ---------- TEXT ---------- */
+
+            .vcard .tag {
+                font-size: 0.7rem;
+                letter-spacing: 0.12em;
+                font-weight: 600;
+                color: #e5e7eb;
+                margin-bottom: auto;
+            }
+
+            .vcard h3 {
+                font-size: 1.4rem;
+                line-height: 1.3;
+                margin: 0;
+                color: #fff;
+            }
+
+        /* ---------- BACKGROUNDS ---------- */
+
+        .img1 {
+            background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80") center/cover no-repeat;
+        }
+
+        .img2 {
+            background: url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80") center/cover no-repeat;
+        }
+
+        .img3 {
+            background: linear-gradient(135deg, #1e3a8a, #020617);
+        }
+
+        .img4 {
+            background: linear-gradient(135deg, #c084fc, #fbcfe8);
+            color: #000;
+        }
+
+            .img4::before {
+                background: linear-gradient( 180deg, rgba(255,255,255,0.25), rgba(255,255,255,0.6) );
+            }
+
+            .img4 h3,
+            .img4 .tag {
+                color: #020617;
+            }
+
+        /* ---------- MOBILE ---------- */
+
+        @media (max-width: 600px) {
+            .vcard {
+                height: 360px;
+            }
+        }
+
+
+
+
+        .visual-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            padding: 80px 40px;
+        }
+
+        /* Base card */
+        .vcard {
+            position: relative;
+            height: 360px;
+            padding: 28px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.12);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            overflow: hidden;
+            filter: contrast(1.05) saturate(1.05);
+        }
+
+            /* Overlay */
+            .vcard::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient( to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0) 70%, rgba(0,0,0,0) 100% );
+            }
+
+
+            .vcard * {
+                position: relative;
+                z-index: 1;
+            }
+
+            /* Hover */
+            .vcard:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+            }
+
+            /* Text */
+            .vcard .tag {
+                font-size: 0.7rem;
+                letter-spacing: 0.12em;
+                font-weight: 600;
+                margin-bottom: auto;
+                color: #e5e7eb;
+            }
+
+            .vcard h3 {
+                font-size: 1.6rem;
+                margin: 0 0 10px;
+                color: #fff;
+            }
+
+            .vcard p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                color: #fff
+            }
+
+        /* ---------- PRODUCT BACKGROUNDS ---------- */
+
+         /* ---------- PRODUCT BACKGROUNDS (LOCAL IMAGES) ---------- */
+        .finance {
+            background: linear-gradient( 100deg, rgba(0,0,0,0), rgba(0,0,0,0) ), url("assets/cards/finanace-unsplash.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .etrm {
+            background: linear-gradient( 180deg, rgba(0,0,0,0), rgba(0,0,0,0) ), url("assets/cards/etrm-unsplash.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .inventory {
+            background: linear-gradient( 180deg, rgba(0,0,0,0), rgba(0,0,0,0) ), url("assets/cards/inventory-unsplash.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .vcard {
+                height: 320px;
+            }
+        }
+
+        .primary-btn {
+            display: inline-block;
+            padding: 14px 26px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), #0ea5a4);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+            .primary-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 22px rgba(20,184,166,0.35);
+            }
+
+
+        .primary-p {
+            display: inline-block;
+            border-radius: 0px;
+            background: linear-gradient(105deg, #a6f3f3, #0ea5a4);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.15s ease, box-shadow 0.05s ease;
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <img src="/assets/logo/yestha-logo.svg" alt="Yestha Inc logo" />
-        <h1>Yestha Inc.</h1>
-        <p>
-            Building reliable, scalable, and modern web solutions —
-            from architecture to delivery.
-        </p>
-    </header>
+    <nav>
+        <img src="assets/logo/yestha-logo.svg" alt="Yestha Inc" />
+        <ul>
+            <li>Company info</li>
+            <li>Products</li>
+            <li>Services</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
 
-    <section>
-        <h2>Our Services</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Web Application Development</h3>
-                <p>Modern, secure, and high-performance web applications.</p>
-            </div>
+    <section class="hero">
+        <div>
+            <h1>
+                Yestha Inc.<br />
+            </h1>
 
-            <div class="card">
-                <h3>Technology Consulting</h3>
-                <p>Architecture, system design, and cloud modernization.</p>
-            </div>
+            <p>
+                Yestha Inc. Web Application Development, Technology Consulting, Maintenance & Support services to clients.
+            </p>
 
-            <div class="card">
-                <h3>Maintenance & Support</h3>
-                <p>Reliable support and continuous improvements.</p>
-            </div>
+            <a href="#services" class="cta">
+                Prodcuts & Services
+                <span>→</span>
+            </a>
         </div>
+
     </section>
 
-    <section>
-        <h2>Contact</h2>
-        <p>
-            📧 Email: <strong>contact@yestha.com</strong><br />
-            🌍 Location: Remote / Global
-        </p>
+
+    <section class="visual-cards">
+
+        <!-- My Personal Finance -->
+        <div class="vcard finance">
+            <span class="tag">PRODUCT</span>
+            <!--<h3>My Personal Finance</h3>-->
+            <div style="margin-top: 0px;">
+                <a href="https://app.gvksoftware.com"
+                   target="_blank"
+                   class="primary-btn">
+                    View My Personal Finance →
+                </a>
+            </div>
+            <p  >
+                A modern personal finance application to track income,
+                expenses, savings, and financial goals with clarity.
+            </p>
+
+        </div>
+
+        <!-- ETRM -->
+        <div class="vcard etrm">
+            <span class="tag">UPCOMING PRODUCT</span>
+            <h3>ETRM for Natural Gas</h3>
+            <p>
+                End-to-end Energy Trading & Risk Management platform
+                designed for physical natural gas trading workflows.
+            </p>
+        </div>
+
+        <!-- Inventory -->
+        <div class="vcard inventory">
+            <span class="tag">PLANNED</span>
+            <h3>Inventory Management System</h3>
+            <p>
+                Scalable inventory tracking system focused on accuracy,
+                operational efficiency, and real-time visibility.
+            </p>
+        </div>
+
     </section>
 
-    <footer>
-        © <span id="year"></span> Yestha Inc. All rights reserved.
-    </footer>
-
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-
-</body>
+ </body>
+  
 </html>
